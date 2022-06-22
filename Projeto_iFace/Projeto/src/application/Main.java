@@ -3,10 +3,27 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import entities.Amizades;
 import entities.BancoDados;
-import entities.Feed;
-import entities.enums.PermissaoFeed;
+import options.Eight;
+import options.Eleven;
+import options.Fifteen;
+import options.Five;
+import options.Four;
+import options.Fourteen;
+import options.Hello;
+import options.Nine;
+import options.Nineteen;
+import options.Options;
+import options.One;
+import options.Seven;
+import options.Seventeen;
+import options.Six;
+import options.Sixteen;
+import options.Ten;
+import options.Three;
+import options.Threteen;
+import options.Twelve;
+import options.Two;
 
 public class Main {
 	
@@ -22,7 +39,7 @@ public class Main {
 		System.out.println("Informe seu login:");
 		String login = sc.nextLine();
 		if(dados.buscaList(login) != null) {
-		    System.out.println("Login já existente.");
+		    System.out.println("Login ja existente.");
 		} else {
 			System.out.println("Informe sua senha:");
 			String senha = sc.nextLine();
@@ -37,7 +54,7 @@ public class Main {
 		System.out.println("\n---------------------------------------");
 		System.out.println("L o g i n : " + loginConta);
 		System.out.println("---------------------------------------");
-	    System.out.println("Solicitações (" + dados.mostrarSolUsu(loginConta) +")");
+	    System.out.println("Solicitacoes (" + dados.mostrarSolUsu(loginConta) +")");
 		System.out.println("Amigos (" + dados.mostrarAmi(loginConta) +")");
 		System.out.println("Mensagens (" + dados.mostrarMen(loginConta) +")");
 		System.out.println("Comunidades (" + dados.mostrarCom(loginConta) +")");
@@ -50,7 +67,7 @@ public class Main {
 		System.out.println("  04-> Verificar Pedidos de Amizade");
 		System.out.println("  05-> Ver Amigos");
 		System.out.println("MENSAGENS");
-		System.out.println("  06-> Enviar Mensagem para um Usuário");
+		System.out.println("  06-> Enviar Mensagem para um Usuario");
 		System.out.println("  07-> Enviar Mensagem para uma Comunidade");
 		System.out.println("  08-> Visualizar Todas as Mensagens");
 		System.out.println("COMUNIDADES");
@@ -60,8 +77,8 @@ public class Main {
 		System.out.println("  12-> Ver Minhas Comunidades");
 		System.out.println("  13-> Sair de uma Comunidade");
 		System.out.println("FEED");
-		System.out.println("  14-> Configurar seu Feed de Notícias");
-		System.out.println("  15-> Escrever no Feed de Notícias");
+		System.out.println("  14-> Configurar seu Feed de Noticias");
+		System.out.println("  15-> Escrever no Feed de Noticias");
 		System.out.println("  16-> Visualizar Meu Feed");
 		System.out.println("  17-> Visualizar Feed Geral");
 		System.out.println("...");
@@ -86,7 +103,7 @@ public class Main {
 			while(verificacao == false)	{		    
 				try {
 					paginaInicial();
-					System.out.print("Digite sua opção: ");
+					System.out.print("Digite sua opcao: ");
 					entrada1 = Integer.parseInt(sc.nextLine());
 					verificacao = true;
 					System.out.println("");
@@ -102,20 +119,20 @@ public class Main {
 		     break;
 			case 2:
 				if(dados.getTamanhoLista() == 0) {
-			    	System.out.println("Sem usuários cadastrados");
+			    	System.out.println("Sem usuarios cadastrados");
 			    } else {
 			    	System.out.println("Informe seu login:");
 			    	String loginConta = sc.nextLine();
 			    	String nome_LoginConta = dados.buscaList(loginConta);
 			    	if(nome_LoginConta == null) {
-			    		System.out.println("Login não cadastrado");
+			    		System.out.println("Login nao cadastrado");
 			    	} else {
 					    do {
 					    	verificacao = false;
 							while(verificacao == false){
 								try {
 						    		paginaLogin(loginConta, dados);
-						    		System.out.print("Digite sua opção: ");
+						    		System.out.print("Digite sua opcao: ");
 									entradaLogin = Integer.parseInt(sc.nextLine());
 									verificacao = true;
 									System.out.println("");
@@ -124,339 +141,78 @@ public class Main {
 									System.out.println("\n" + "Erro na entrada: " + e + "\n");
 								}
 							}
+							
+							Options teste = new Two();
 					    	
 						    switch (entradaLogin) {
 							case 1:
-								verificacao = false;
-								while(verificacao == false){
-							    try {
-							    	System.out.println("1-> Alterar login");
-								    System.out.println("2-> Alterar senha");
-								    System.out.println("3-> Alterar nome");
-								    System.out.print("Digite sua opção: ");
-							    	entradaConfigurarPerfil = Integer.parseInt(sc.nextLine());
-									verificacao = true;
-									System.out.println("");
-								} 
-								catch (NumberFormatException e) {
-									System.out.println("\n" + "Erro na entrada: " + e + "\n");
-								}
-								}
-							    
-							    switch (entradaConfigurarPerfil) {
-							    case 1:
-							    	System.out.println("Novo login:");
-							    	String loginNovo = sc.nextLine();
-							    	dados.mudarLoginList(loginConta, loginNovo);
-							    	System.out.println("Login alterado de " + loginConta + " para " + loginNovo + ".");
-					    			loginConta = loginNovo;
-							     break;
-							    case 2:
-									System.out.println("Nova senha:");
-									String senhaNova = sc.nextLine();
-									System.out.println("Senha alterada de " + dados.buscaSenhaList(loginConta) + " para " + senhaNova + ".");
-									dados.mudarSenhaList(loginConta, senhaNova);
-							     break;
-							    case 3:
-									System.out.println("Novo nome:");
-									String nomeNovo = sc.nextLine();
-									System.out.println("Nome alterado de " + dados.buscaList(loginConta) + " para " + nomeNovo + ".");
-									dados.mudarNomeList(loginConta, nomeNovo);
-							     break;
-							    default:
-							    	System.out.println("Opção Inválida");
-							    }
+								teste = new One();
 							 break;
 						    case 2:
-						    	dados.imprimirConta(loginConta);
+						    	teste = new Two();
 						     break;
 						    case 3:
-						    	System.out.println("Informe o Login do amigo desejado: ");
-						    	String amigoDesejado = sc.nextLine();
-						    	if(loginConta.contentEquals(amigoDesejado) == true) {
-						    		System.out.println("Você não pode ser seu próprio amigo.");
-						    	} else {
-									if(dados.buscaList(amigoDesejado) == null) {
-										System.out.println("Login destinatário não cadastrado");
-									} else {
-										int verificacaoSolAmi = dados.verificacaoSolAmi(loginConta, amigoDesejado);
-										if(dados.verificacaoAmizade(loginConta, amigoDesejado) == 1) {
-											System.out.println("Você já é amigo do usuário " + amigoDesejado + ".");
-										} else if(verificacaoSolAmi == 1) {
-											System.out.println("Verifique seus pedidos." + amigoDesejado + " já lhe enviou um pedido de Amizade.");
-										} else if(verificacaoSolAmi == 2) {
-											System.out.println("Você já enviou anteriormente um pedido a esse usuário.");
-										} else{
-											dados.addListSolAmi(loginConta, amigoDesejado);
-											System.out.println("Solicitação enviada.");
-										}
-									}
-						    	}
+						    	teste = new Three();
 						     break;
 						    case 4:
-						    	int escolhaSolAmi = 1;
-						    	auxiliar = dados.listaSolAmi(loginConta);
-						    	if(auxiliar == null) {
-						    		System.out.println("Sem solicitações no momento.");
-						    	} else {
-									System.out.println(auxiliar);
-									verificacao = false;
-						            while(verificacao == false){
-						    		try {
-										System.out.println("1-> Aceitar uma solicitação:");
-										System.out.println("2-> Recusar uma solicitação:");
-										System.out.println("3-> Voltar.");
-										System.out.print("Digite sua opção: ");
-										escolhaSolAmi = Integer.parseInt(sc.nextLine());
-										verificacao = true;
-										System.out.println("");
-									} 
-									catch (NumberFormatException e) {
-										System.out.println("\n" + "Erro na entrada: " + e + "\n");
-									} 
-									}
-							    	while (escolhaSolAmi != 3) {
-							    		String loginAmigo;
-							    		System.out.println("Digite o login de quem fez a solicitação:");
-					    				loginAmigo = sc.nextLine();
-					    				if(dados.buscaList(loginAmigo) == null) {
-					    					System.out.println("Login não cadastrado.");
-					    				} else if(dados.verificacaoSolAmi(loginConta, loginAmigo) == 0) {
-					    					System.out.println("Login inválido.");
-					    				} else {
-					    					switch (escolhaSolAmi) {
-								    			case 1:
-								    				dados.addListAmi(loginConta, loginAmigo);
-								    				dados.removeListSolAmi(loginConta, loginAmigo);
-								    				System.out.println("Solicitação Aceita");
-								    		    break;
-								    			case 2:
-								    				dados.removeListSolAmi(loginConta, loginAmigo);
-								    				System.out.println("Solicitação Recusada");
-								    			break;
-								    			default:
-								    				System.out.println("Opção Inválida");
-								    	    }
-										}
-										verificacao = false;
-						                while(verificacao == false){
-							    		try {
-											System.out.println("1-> Aceitar uma solicitação:");
-											System.out.println("2-> Recusar uma solicitação:");
-											System.out.println("3-> Voltar.");
-											System.out.print("Digite sua opção: ");
-											escolhaSolAmi = Integer.parseInt(sc.nextLine());
-											verificacao = true;
-											System.out.println("");
-										} 
-										catch (NumberFormatException e) {
-											System.out.println("\n" + "Erro na entrada: " + e + "\n");
-										}
-										}
-							    	}
-						    	}
+						    	teste = new Four();
 						     break;
 						    case 5:
-						    	auxiliar = dados.visualizarAmigos(loginConta);
-						    	if(auxiliar == null) {
-						    		System.out.println("Sem amigos.");
-						    	} else {
-						    		System.out.println(auxiliar);
-						    	}
+						    	teste = new Five();
 						     break;
 						    case 6:
-						    	System.out.println("Informe o login do destinatário:");
-								String loginDestinatario = sc.nextLine();
-								if(dados.buscaList(loginDestinatario) == null) {
-									System.out.println("Login destinatário não cadastrado");
-								} else {
-									System.out.println("Informe a mensagem:");
-									String mensagem = sc.nextLine();
-									dados.enviarMenUsuario(loginConta, mensagem, loginDestinatario);
-									System.out.println("Mensagem enviada com sucesso!");
-								}
+						    	teste = new Six();
 						     break;
 						    case 7:
-						    	if(dados.getTamanhoListaCom() == 0) {
-						    		System.out.println("Nao existe comunidade no momento");
-						    	} else {
-									System.out.println("Informe o nome da comunidade:");
-									String loginDestinatario2 = sc.nextLine();
-									System.out.println("Informe a mensagem:");
-									String mensagem2 = sc.nextLine();
-									if(dados.enviarMenComunidade(loginConta, mensagem2, loginDestinatario2) == 0) {
-										System.out.println("Comunidade nao cadastrada");
-									} else {
-										System.out.println("Mensagem enviada com sucesso!");
-									}
-								}
+						    	teste = new Seven();
 						     break;
 						    case 8:
-						    	auxiliar = dados.visualizarMensagens(loginConta);
-						    	if(auxiliar == null) {
-						    		System.out.println("Nenhuma mensagem encontrada.");
-						    	} else {
-						    		System.out.println(auxiliar);
-						    	}
+						    	teste = new Eight();
 						     break;
 						    case 9:
-						    	System.out.println("Informe o nome da comunidade:");
-								String nomCom = sc.nextLine();
-								System.out.println("Informe a descrição da comunidade:");
-							    String descCom = sc.nextLine();
-								if(dados.criarComunidade(loginConta, nomCom, descCom) == 0) {
-									System.out.println("Uma comunidade já existe com esse nome.");
-								} else {
-									System.out.println("Comunidade criada com sucesso!");
-								}
+						    	teste = new Nine();
 						     break;
 						    case 10:
-						    	if(dados.getTamanhoListaCom() == 0) {
-						    		System.out.println("Não existe comunidade no momento");
-						    	} else {
-						    		System.out.println("Comunidades Existentes:");
-						    		System.out.println(dados.getListCom());
-						    		System.out.println("\nInforme a comunidade de interesse:");
-						    		String nomeComunidade = sc.nextLine();
-						    		int respostaComunidade = dados.entrarComunidade(loginConta, nomeComunidade);
-						    		if(respostaComunidade == 0) {
-						    			System.out.println("Comunidade nao encontrada");
-						    		} else if(respostaComunidade == 1) {
-						    			System.out.println("Vocé já é o dono dessa comunidade.");
-						    		} else if(respostaComunidade == 2) {
-						    			System.out.println("Vocé já faz parte dessa comunidade.");
-						    		} else if(respostaComunidade == 3) {
-						    			System.out.println("Parabéns! Agora você faz parte dessa comunidade.");
-						    		}
-						    	}
+						    	teste = new Ten();
 						     break;
 						    case 11:
-						    	if(dados.getTamanhoListaCom() == 0) {
-						    		System.out.println("Não existe comunidade no momento");
-						    	} else {
-						    		System.out.println("Comunidades Existentes:");
-						    		System.out.println(dados.getListCom());
-						    	}
+						    	teste = new Eleven();
 						     break;
 						    case 12:
-						    	auxiliar = dados.visualizarComunidades(loginConta);
-						    	if(auxiliar == null) {
-						    		System.out.println("Nenhuma comunidade encontrada.");
-						    	} else {
-						    		System.out.println("Comunidades que você faz parte:");
-						    		System.out.println(auxiliar);
-						    	}
+						    	teste = new Twelve();
 						     break;
 						    case 13:
-						    	auxiliar = dados.visualizarComunidades(loginConta);
-						    	if(auxiliar == null) {
-						    		System.out.println("Você nâo faz parte de nenhuma comunidade.");
-						    	} else {
-						    		System.out.println("Comunidades que você faz parte:");
-						    		System.out.println(auxiliar);
-						    		System.out.println("Digite o nome da comunidade que deseja sair:");
-						    		String nomeComunidadeSair = sc.nextLine();
-						    		int respostaComunidade = dados.sairComunidade(loginConta, nomeComunidadeSair);
-						    		if(respostaComunidade == 0) {
-						    			System.out.println("Comunidade nao encontrada.");
-						    		} else if(respostaComunidade == 1) {
-						    			System.out.println("Você é o(a) dono(a) dessa comunidade e não pode sair.");
-						    		} else if(respostaComunidade == 2) {
-						    			System.out.println("Saída efetivada com sucesso!");
-						    		} else if(respostaComunidade == 3) {
-						    			System.out.println("Você não faz parte dessa comunidade.");
-						    		}
-						    	}
+						    	teste = new Threteen();
 						     break;
 							case 14:
-								verificacao = false;
-								while(verificacao == false){
-						    	try {
-						    		System.out.println("Escolha a configuração do seu feed:");
-							    	System.out.println("Publico -> (todos podem visualizar)");
-							        System.out.println("Privado -> (apenas amigos conseguem visualizar)");
-							    	System.out.print("Escreva exatamente como encima: ");
-								    String permissaoFeed = sc.nextLine();
-								    PermissaoFeed permissaoFeedEnum = PermissaoFeed.valueOf(permissaoFeed);
-								    dados.configurarFeed(loginConta, permissaoFeedEnum);
-									System.out.println("Feed configurado.");
-									verificacao = true;
-						    	}
-						    	catch (IllegalArgumentException e) {
-									System.out.println("\n" + "Erro na entrada: " + e + "\n");
-								} 
-							    }
+								teste = new Fourteen();
 						     break;
 						    case 15:
-						    	if(dados.buscarLoginNoFeed(loginConta) == 0) {
-						    		System.out.println("Seu feed precisa ser configurado primeiro");
-						    	} else {
-						    		System.out.println("Escreva a mensagem para o feed:");
-							    	String feedTexto = sc.nextLine();
-							    	dados.escreverFeed(loginConta, feedTexto);
-							    	System.out.println("Feed atualizado.");
-						    	}
+						    	teste = new Fifteen();
 						     break;
 						    case 16:
-						    	if(dados.visualizarFeed(loginConta) == null) {
-						    		System.out.println("Nenhuma atividade encontrada no Feed.");
-						    	}else {
-						    		System.out.println(dados.visualizarFeed(loginConta));
-						    	}
+						    	teste = new Sixteen();
 						     break;
 						    case 17:
-						    	int auxFeed=dados.getTamanhoListaFeed();
-						    	List <Feed> listaFeed = new ArrayList<>();
-						    	listaFeed = dados.getListFeed();
-						    	List <Amizades> listaAmi = new ArrayList<>();
-						    	listaAmi = dados.getListAmi();
-						    	if(auxFeed == 0) {
-						    		System.out.println("Feed vazio.");
-						    	} else {
-						    		for(Feed val : listaFeed) {
-						    			int auxAmi=dados.getTamanhoListaAmi();
-						    			if(val.getPermissao() == PermissaoFeed.Publico ) {
-						    				System.out.println(val);
-						    			} else if(loginConta.contentEquals(val.getLogin()) == true){
-						    				System.out.println(val);
-						    			} else {
-						    				if(listaAmi.size() != 0) {
-						    					for(Amizades val2 : listaAmi) {
-											    	if(loginConta.contentEquals(val2.getUsuario1()) == true && val.getLogin().contentEquals(val2.getUsuario2())) {
-											    		System.out.println(val);
-											    	} else if(loginConta.contentEquals(val2.getUsuario2()) == true && val.getLogin().contentEquals(val2.getUsuario1())) {
-											    		System.out.println(val);
-											    	} else {
-											    		auxAmi--;
-											    	}
-						    					}
-						    				}
-						    				if(auxAmi == 0) {
-						    					auxFeed--;
-						    				}
-						    			}
-						    	    }
-						    		if(auxFeed == 0) {
-						    			System.out.println("Feed vazio.");
-						    		}
-						    	}
+						    	teste = new Seventeen();
 						     break;
 						    case 19:
-						    	dados.cancelarConta(loginConta);
-						    	System.out.println("Cadastro cancelado com sucesso.");
+						    	teste = new Nineteen();
+						    	entradaLogin = 20;
+						     break;
+						    case 20:
 						     break;
 							default:
-								System.out.println("Opção Inválida.");
+								System.out.println("Opcao Invalida.");
 					        }
-						    if(entradaLogin == 19) {
-						    	entradaLogin = 20;
-						    }
+						    
+						    new Hello().Write(teste, verificacao, entradaConfigurarPerfil, loginConta, dados, sc, auxiliar);
 					    } while (entradaLogin != 20);
 			    	}
 		        }
 			 break;
 			default:
-				System.out.println("Digite um número correto");
+				System.out.println("Digite um numero correto");
 			}
 		} while(entrada1 != 3);
 		
@@ -464,3 +220,83 @@ public class Main {
 	    sc.close();
 	}
 }
+
+/*switch (entradaLogin) {
+case 1:
+	One menu = new One();
+	loginConta = menu.escolhasLogado(verificacao, entradaConfigurarPerfil, loginConta, dados, sc, auxiliar);
+ break;
+case 2:
+	Two menu2 = new Two();
+	loginConta = menu2.escolhasLogado(verificacao, entradaConfigurarPerfil, loginConta, dados, sc, auxiliar);
+ break;
+case 3:
+	Three menu3 = new Three();
+	loginConta = menu3.menuTres(dados, sc, loginConta);
+ break;
+case 4:
+	Four menu4 = new Four();
+	loginConta = menu4.menuQuatro(dados, sc, loginConta, auxiliar, verificacao);
+ break;
+case 5:
+	Five menu5 = new Five();
+	loginConta = menu5.menuCinco(dados, loginConta, auxiliar);
+ break;
+case 6:
+	Six menu6 = new Six();
+	loginConta = menu6.menuSeis(dados, sc, loginConta);
+ break;
+case 7:
+	Seven menu7 = new Seven();
+	loginConta = menu7.menuSete(dados, sc, loginConta);
+ break;
+case 8:
+	Eight menu8 = new Eight();
+	loginConta = menu8.menuOito(dados, loginConta, auxiliar);
+ break;
+case 9:
+	Nine menu9 = new Nine();
+	loginConta = menu9.menuNove(dados, sc, loginConta);
+ break;
+case 10:
+	Ten menu10 = new Ten();
+	loginConta = menu10.menuDez(dados, sc, loginConta);
+ break;
+case 11:
+	Eleven menu11 = new Eleven();
+	loginConta = menu11.menuOnze(dados, loginConta);
+ break;
+case 12:
+	Twelve menu12 = new Twelve();
+	loginConta = menu12.menuDoze(dados, loginConta, auxiliar);
+ break;
+case 13:
+	Threteen menu13 = new Threteen();
+	loginConta = menu13.menuTreze(dados, loginConta, auxiliar, sc);
+ break;
+case 14:
+	Fourteen menu14 = new Fourteen();
+	loginConta = menu14.menuQuartoze(dados, loginConta, sc, verificacao);
+ break;
+case 15:
+	Fifteen menu15 = new Fifteen();
+	loginConta = menu15.menuQuinze(dados, loginConta, sc);
+ break;
+case 16:
+	Sixteen menu16 = new Sixteen();
+	loginConta = menu16.menuDezesseis(dados, loginConta);
+ break;
+case 17:
+	Seventeen menu17 = new Seventeen();
+	loginConta = menu17.menuDezessete(dados, loginConta);
+ break;
+case 19:
+	Nineteen menu19 = new Nineteen();
+	loginConta = menu19.menuDezenove(dados, loginConta);
+	entradaLogin = 20;
+ break;
+case 20:
+ break;
+default:
+	System.out.println("Opcao Invalida.");
+}*/
